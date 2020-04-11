@@ -22,6 +22,7 @@
 			renderer.setSize(window.innerWidth, window.innerHeight);
 			document.body.appendChild(renderer.domElement);
 
+
 			//Part 1, 2.
 			var geometry = new THREE.BoxGeometry();
 			var material = new THREE.MeshBasicMaterial( {color: 0xb6b4e0} );
@@ -36,6 +37,7 @@
 			var material2 = new THREE.MeshBasicMaterial( {color: 0xb31919} );
      		var cube2 = new THREE.Mesh(geometry2, material2);
 
+     		//add cube to scene
 			scene.add(cube2);
 			//move the second (red) cube
 			cube2.position.set(3,3,0);
@@ -43,8 +45,21 @@
 			geometry2.scale(0.2,0.2,0.2);
 
 
+			//create 3rd cube
+			var geometry3 = new THREE.BoxGeometry();
+			//set color to green
+			var material3 = new THREE.MeshBasicMaterial( {color: 0x74a668} );
+			var cube3 = new THREE.Mesh(geometry3, material3);
 
-			camera.position.z = 7; //this moves the camera towards the viewer
+			//add cube to scene
+			scene.add(cube3);
+			//move third (green) cube
+			cube3.position.set(0,5,0);
+
+
+			//this moves the camera towards the viewer
+			camera.position.z = 8;
+
 
 			//initialize counter for translate timer
 			var count = 0;
@@ -52,6 +67,11 @@
 			var velY = -0.05;
 			var velX = 0;
 
+
+			//initialize counter for scaling timer
+			var count2 = 0;
+			//initialize scaling velocity
+			var scaleVel = 0.99;
 
 			//Part 1, 3.
 			function animate() {
@@ -63,7 +83,6 @@
 				geometry.rotateX(0.03);
 				geometry.rotateZ(0.01);
 				
-
 				//animate red cube
 				//makes red cube move in a clockwise square formation
 				if(count<=120){
@@ -82,10 +101,28 @@
 					count++;
 				}
 
-
+				//animate green cube
+				//makes green cube shrink and grow
+				if(count2 <= 90){
+					//scale cube
+					geometry3.scale(scaleVel,scaleVel,scaleVel);
+					if(count2 == 90){
+						//change scaling velocity to change whether
+						//	cube is shrinking or growing
+						if(scaleVel < 1) scaleVel = 1.01;
+						else if(scaleVel > 1) scaleVel = 0.99;
+						//reset counter
+						count2 = 0;
+					}
+					//increment counter
+					count2++;
+				}
+				//add a rotation to green cube
+				geometry3.rotateX(0.05);
 			}
-			animate();
 
+			//call animate function
+			animate();
 
 		</script>
 	</body>
