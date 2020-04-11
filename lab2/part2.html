@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Lab 2: Intro to Three.js Part 2</title>
+		<style>
+			body { margin: 0; }
+			canvas { display: block; }
+		</style>
+	</head>
+	<body>
+		<script src="../three.js-master/build/three.js"></script>
+		<script 
+src="../three.js-master/examples/js/loaders/GLTFLoader.js"></script>
+		<script>
+
+			//Part 2, 1.
+      		var scene = new THREE.Scene();
+     	 	var camera = new THREE.PerspectiveCamera(75, 
+				window.innerWidth/window.innerHeight, 0.1, 1000);
+     	 	var renderer = new THREE.WebGLRenderer();
+      		renderer.setSize(window.innerWidth, window.innerHeight);
+      		document.body.appendChild(renderer.domElement);
+      		camera.position.z = 200;
+
+      		//Part 2, 4.
+      		//changed to red light
+      		var light = new THREE.PointLight(0xa63d5e, 6, 1000);
+			light.position.set(50, 300, 50);
+			scene.add(light);
+
+			//added second light source, blue
+			var light2 = new THREE.PointLight(0x82dafa, 3, 1000);
+			//light2.position.set(-100,-500,0);
+			light2.position.set(0,-500,50);
+			scene.add(light2);
+
+
+			//Part 2, 6.
+			//dog model
+			var loader = new THREE.GLTFLoader();
+			loader.load('3dModels/dog.glb', function (gltf) {
+				scene.add(gltf.scene);
+				//change position, angle, and size of dog model
+				gltf.scene.rotation.y = 1.1;
+				gltf.scene.rotation.x = 0.3;
+				gltf.scene.rotation.z = 0.5;
+				gltf.scene.scale.x = 1.9;
+				gltf.scene.scale.y = 1.9;
+				gltf.scene.scale.z = 1.9;
+				gltf.scene.position.y = -30;
+				gltf.scene.position.x = -150;
+
+			}, function (xhr) {
+				console.log('dog ' + (xhr.loaded / xhr.total * 100) + '% loaded' );
+			}, function (error) {
+				console.error(error);
+			});
+
+			//second model
+			//cat model
+			loader.load('3dModels/cat.glb', function (gltf) {
+				scene.add(gltf.scene);
+				//change position, angle, and size of cat model
+				gltf.scene.rotation.y = -1.1;
+				gltf.scene.rotation.x = 0.3;
+				gltf.scene.rotation.z = -0.5;
+				gltf.scene.scale.x = 4;
+				gltf.scene.scale.y = 4;
+				gltf.scene.scale.z = 4;
+				gltf.scene.position.y = -20;
+				gltf.scene.position.x = 150;
+
+			}, function (xhr) {
+				console.log('cat ' + (xhr.loaded / xhr.total * 100) + '% loaded' );
+			}, function (error) {
+				console.error(error);
+			});
+
+
+			//second model
+			//rabbit model
+			loader.load('3dModels/rabbit.glb', function (gltf) {
+				scene.add(gltf.scene);
+				//change position, angle, and size of rabbit model
+				gltf.scene.rotation.x = 0.76;
+				gltf.scene.scale.x = 2.5;
+				gltf.scene.scale.y = 2.5;
+				gltf.scene.scale.z = 2.5;
+				gltf.scene.position.y = 30;
+				gltf.scene.position.x = 10;
+
+			}, function (xhr) {
+				console.log('rabbit ' + (xhr.loaded / xhr.total * 100) + '% loaded' );
+			}, function (error) {
+				console.error(error);
+			});
+
+
+			//fourth model
+			//calla lily w/ roses
+			loader.load('3dModels/calla_lily_with_roses.glb', function (gltf) {
+				scene.add(gltf.scene);
+				//change position, angle, and size of rabbit model
+				gltf.scene.rotation.z = 0.7;
+				gltf.scene.rotation.x = -0.7;
+				gltf.scene.scale.x = 2.5;
+				gltf.scene.scale.y = 2.5;
+				gltf.scene.scale.z = 2.5;
+				gltf.scene.position.y = -130;
+				gltf.scene.position.x = 70;
+
+			}, function (xhr) {
+				console.log('calla_lily_with_roses ' + (xhr.loaded / xhr.total * 100) + '% loaded' );
+			}, function (error) {
+				console.error(error);
+			});
+
+
+
+			function animate() {
+				requestAnimationFrame(animate);
+				renderer.render(scene, camera);
+			}
+			animate();
+
+
+
+
+		</script>
+	</body>
+</html>
