@@ -16,7 +16,7 @@
 			//Part 1, 1.
 			var scene = new THREE.Scene();
 			var camera = new THREE.PerspectiveCamera(75, 
-			window.innerWidth/window.innerHeight, 0.1, 1000);
+				window.innerWidth/window.innerHeight, 0.1, 1000);
 
 			var renderer = new THREE.WebGLRenderer();
 			renderer.setSize(window.innerWidth, window.innerHeight);
@@ -26,17 +26,62 @@
 			var geometry = new THREE.BoxGeometry();
 			var material = new THREE.MeshBasicMaterial( {color: 0xb6b4e0} );
      		var cube = new THREE.Mesh(geometry, material);
+
 			scene.add(cube);
-			camera.position.z = 5; //this moves the camera towards the viewer
+
+
+			//create second cube
+			var geometry2 = new THREE.BoxGeometry();
+			//set color to red
+			var material2 = new THREE.MeshBasicMaterial( {color: 0xb31919} );
+     		var cube2 = new THREE.Mesh(geometry2, material2);
+
+			scene.add(cube2);
+			//move the second (red) cube
+			cube2.position.set(3,3,0);
+			//change the size of red cube
+			geometry2.scale(0.2,0.2,0.2);
+
+
+
+			camera.position.z = 7; //this moves the camera towards the viewer
+
+			//initialize counter for translate timer
+			var count = 0;
+			//initialize translate velocities
+			var velY = -0.05;
+			var velX = 0;
+
 
 			//Part 1, 3.
 			function animate() {
 				requestAnimationFrame(animate);
 				renderer.render(scene, camera);
 
+				//animate indigo cube
 				//Part 1, 5. Animate cube w/ rotation
-				geometry.rotateX(0.01);
-				geometry.rotateY(0.01);
+				geometry.rotateX(0.03);
+				geometry.rotateZ(0.01);
+				
+
+				//animate red cube
+				//makes red cube move in a clockwise square formation
+				if(count<=120){
+					//move cube
+					geometry2.translate(velX, velY, 0);
+					if(count == 120){
+						//change velocities to change the directions cube is moving in
+						if(velY < 0){ velY = 0; velX = -0.05;      }
+						else if(velX < 0){ velY = 0.05; velX = 0;  }
+						else if(velY > 0){ velY = 0; velX = 0.05;  }
+						else if(velX > 0){ velY = -0.05; velX = 0; }
+						//reset counter
+						count = 0;
+					}
+					//increment counter
+					count++;
+				}
+
 
 			}
 			animate();
