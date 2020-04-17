@@ -16,7 +16,7 @@
 			THREE.Cache.enabled = true;
 			var count = 0;
 			var loader = new THREE.FileLoader();
-			var fshader, vshader;
+			var fshader, vshader, fshader2;
 
 			//Lab 3 Part 2, 6. Loading Vertex Shader
 			loader.load('shaders/vertexShader.vert',
@@ -42,6 +42,24 @@
 				function (data) {
 						console.log(data); // output the text to the console
 						fshader = data;
+						count += 1;
+						addCoolCube(); // we will write this method
+					},
+				// onProgress callback
+				function (xhr) {
+					console.log((xhr.loaded/xhr.total * 100)+ '% loaded');
+				},
+				// onError callback
+				function (err) {
+					console.error('An error happened');
+				});
+
+			//loadng own fragment shader
+			loader.load('shaders/ownFragShader.frag',
+				// onLoad callback
+				function (data) {
+						console.log(data); // output the text to the console
+						fshader2 = data;
 						count += 1;
 						addCoolCube(); // we will write this method
 					},
@@ -117,6 +135,7 @@
 
 			//Part2, 9. function code for addCoolCube()
 			var geometry1, material1, mesh1;
+			var geometry5, material5, cube5;
 
 			function addCoolCube() {
 				if(count == 2) {
@@ -138,9 +157,34 @@
 					});
 
 					mesh1 = new THREE.Mesh(geometry1, material1);
-					mesh1.position.x = 2;
+					mesh1.position.x = 4;
 					scene.add(mesh1);
-				}	
+				}
+
+				//check that own fragment shader has loaded
+				//make cube
+				if(count == 3){
+					let uniforms = {
+						colorC: {type: 'vec3', value: new
+						 	THREE.Color(1,0,0)},
+						colorB: {type: 'vec3', value: new 
+							THREE.Color(0,1,0)},
+						colorA: {type: 'vec3', value: new 
+							THREE.Color(0,0,1)}
+	 				};
+
+					geometry5 = new THREE.BoxGeometry(1, 1, 1);
+					material5 =  new THREE.ShaderMaterial({
+						uniforms: uniforms,
+						fragmentShader: fshader2,
+						vertexShader: vshader,
+						precision: "mediump"
+					});
+
+					cube5 = new THREE.Mesh(geometry5, material5);
+					cube5.position.x = 2;
+					scene.add(cube5);
+				}
 			}
 
 
@@ -162,7 +206,10 @@
 					geometry1.rotateX(0.01);
 					geometry1.rotateY(0.01);
 				}
-
+				if(geometry5){
+					geometry5.rotateX(0.01);
+					geometry5.rotateY(0.01);
+				}
 
 
 				renderer.render(scene, camera);
