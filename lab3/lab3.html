@@ -73,6 +73,7 @@
 			var material = new THREE.MeshPhongMaterial( { color: 0xdddddd, 
 				specular: 0x00ff00, shininess: 30 });
       		var cube = new THREE.Mesh( geometry, material );
+      		cube.position.set(-4,0,0);
      		scene.add(cube);
 
      		//adding own second cube
@@ -84,19 +85,18 @@
      			wireframe: true 
      		});
      		var cube2 = new THREE.Mesh(geometry2, material2);
-     		cube2.position.set(1,0,0);
-     		cube2.scale.set(3,3,3);
+     		//cube2.scale.set(3,3,3);
      		scene.add(cube2);
 
      		//adding own third cube
      		var geometry3 = new THREE.BoxGeometry();
      		var material3 = new THREE.MeshLambertMaterial({
      			color:0x912c2c,
-     			opacity: 0.5,
+     			opacity: 0.7,
      			transparent: true
      		});
      		var cube3 = new THREE.Mesh(geometry3,material3);
-     		cube3.position.set(-2,-1,2);
+     		cube3.position.set(-2,0,0);
      		scene.add(cube3);
 
      		//adding own 4th cube
@@ -106,7 +106,7 @@
 				specular: 0xf3f5bc
 			});
      		var cube4 = new THREE.Mesh(geometry4,material4);
-     		cube4.position.set(-2,-1,2);
+     		cube4.position.set(-2,0,0);
      		cube4.scale.set(0.3,0.3,0.3);
      		scene.add(cube4);
 
@@ -123,9 +123,9 @@
 					//Part2, 13. Adding colors
 					let uniforms = {
 						colorB: {type: 'vec3', value: new 
-							THREE.Color(0xacb6e5)},
+							THREE.Color(0xf5b3e5)},
 						colorA: {type: 'vec3', value: new 
-							THREE.Color(0x74ebd5)}
+							THREE.Color(0xfaeec8)}
 	 				};
 
 					geometry1 = new THREE.BoxGeometry(1, 1, 1);
