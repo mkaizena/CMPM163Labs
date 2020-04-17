@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Lab 3: Shaders in Three.js</title>
+		<style>
+			body { margin: 0; }
+			canvas { display: block; }
+		</style>
+	</head>
+	<body>
+		<script src="../three.js-master/build/three.js"></script>
+		<script>
+			// setup the scene
+      		var scene = new THREE.Scene();
+      		var camera = new THREE.PerspectiveCamera(75, 
+				window.innerWidth/window.innerHeight, 0.1, 1000);
+      		var renderer = new THREE.WebGLRenderer();
+      		renderer.setSize(window.innerWidth, window.innerHeight);
+      		document.body.appendChild(renderer.domElement);
+			camera.position.z = 5;
+			
+			// setup the cube
+			var geometry = new THREE.BoxGeometry();
+			//Part 1, 4. Replacing material with Phong Lighting model
+			var material = new THREE.MeshPhongMaterial( { color: 0xdddddd, 
+				specular: 0x00ff00, shininess: 30 });
+      		var cube = new THREE.Mesh( geometry, material );
+     		scene.add(cube);
+
+     		//adding own second cube
+     		var geometry2 = new THREE.BoxGeometry();
+     		var material2 = new THREE.MeshPhongMaterial({
+     			color: 0xca64e3,
+     			specular: 0xa2fcfc,
+     			shininess: 20,
+     			wireframe: true 
+     		});
+     		var cube2 = new THREE.Mesh(geometry2, material2);
+     		cube2.position.set(1,0,0);
+     		cube2.scale.set(3,3,3);
+     		scene.add(cube2);
+
+     		//adding own third cube
+     		var geometry3 = new THREE.BoxGeometry();
+     		var material3 = new THREE.MeshLambertMaterial({
+     			color:0x912c2c,
+     			opacity: 0.5,
+     			transparent: true
+     		});
+     		var cube3 = new THREE.Mesh(geometry3,material3);
+     		cube3.position.set(-2,-1,2);
+     		scene.add(cube3);
+
+     		//adding own 4th cube
+     		var geometry4 = new THREE.BoxGeometry();
+     		var material4 = new THREE.MeshPhongMaterial({
+     			color: 0xe39139,
+				specular: 0xf3f5bc
+			});
+     		var cube4 = new THREE.Mesh(geometry4,material4);
+     		cube4.position.set(-2,-1,2);
+     		cube4.scale.set(0.3,0.3,0.3);
+     		scene.add(cube4);
+
+
+
+
+			// add the light
+			var light = new THREE.PointLight(0xffffff, 1, 1000);
+			light.position.set(10, 10, 10);
+			scene.add(light);
+
+			function animate() {
+				requestAnimationFrame(animate);
+				geometry.rotateX(0.01);
+				geometry.rotateY(0.01);
+				//animating own cubes
+				geometry2.rotateX(-0.009);
+				geometry2.rotateZ(0.01);
+				geometry3.rotateX(0.01);
+				geometry3.rotateY(-0.02);
+				geometry4.rotateX(0.03);
+				geometry4.rotateY(-0.06);
+				geometry4.rotateZ(0.04);
+				renderer.render(scene, camera);
+			}
+			animate();
+
+
+		</script>
+	</body>
+</html>
