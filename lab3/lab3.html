@@ -11,6 +11,53 @@
 	<body>
 		<script src="../three.js-master/build/three.js"></script>
 		<script>
+
+			//inserting Lab 3 Part2, 5. code here
+			THREE.Cache.enabled = true;
+			var count = 0;
+			var loader = new THREE.FileLoader();
+			var fshader, vshader;
+
+			//Lab 3 Part 2, 6. Loading Vertex Shader
+			loader.load('shaders/vertexShader.vert',
+				// onLoad callback
+				function (data) {
+					console.log(data); // output the text to the console
+					vshader = data;
+					count += 1;
+					addCoolCube(); // we will write this method
+				},
+				// onProgress callback
+				function (xhr) {
+					console.log((xhr.loaded/xhr.total * 100)+ '% loaded');
+				},
+				// onError callback
+				function (err) {
+					console.error('An error happened');
+				});
+
+			//Lab3 Part2, 7. Loading fragment shader
+			loader.load('shaders/fragmentShader.frag',
+				// onLoad callback
+				function (data) {
+						console.log(data); // output the text to the console
+						fshader = data;
+						count += 1;
+						addCoolCube(); // we will write this method
+					},
+				// onProgress callback
+				function (xhr) {
+					console.log((xhr.loaded/xhr.total * 100)+ '% loaded');
+				},
+				// onError callback
+				function (err) {
+					console.error('An error happened');
+				});
+
+			//
+			//Code for addCoolCube() is at Line 117
+			//
+
 			// setup the scene
       		var scene = new THREE.Scene();
       		var camera = new THREE.PerspectiveCamera(75, 
@@ -63,13 +110,39 @@
      		cube4.scale.set(0.3,0.3,0.3);
      		scene.add(cube4);
 
-
-
-
 			// add the light
 			var light = new THREE.PointLight(0xffffff, 1, 1000);
 			light.position.set(10, 10, 10);
 			scene.add(light);
+
+			//Part2, 9. function code for addCoolCube()
+			var geometry1, material1, mesh1;
+
+			function addCoolCube() {
+				if(count == 2) {
+					//Part2, 13. Adding colors
+					let uniforms = {
+						colorB: {type: 'vec3', value: new 
+							THREE.Color(0xacb6e5)},
+						colorA: {type: 'vec3', value: new 
+							THREE.Color(0x74ebd5)}
+	 				};
+
+					geometry1 = new THREE.BoxGeometry(1, 1, 1);
+					material1 =  new THREE.ShaderMaterial({
+						//Part2,14. adding uniforms to material1
+						uniforms: uniforms,
+						fragmentShader: fshader,
+						vertexShader: vshader,
+						precision: "mediump"
+					});
+
+					mesh1 = new THREE.Mesh(geometry1, material1);
+					mesh1.position.x = 2;
+					scene.add(mesh1);
+				}	
+			}
+
 
 			function animate() {
 				requestAnimationFrame(animate);
@@ -83,6 +156,15 @@
 				geometry4.rotateX(0.03);
 				geometry4.rotateY(-0.06);
 				geometry4.rotateZ(0.04);
+
+				//Part2, 10. rotate blue cube
+				if(geometry1) {
+					geometry1.rotateX(0.01);
+					geometry1.rotateY(0.01);
+				}
+
+
+
 				renderer.render(scene, camera);
 			}
 			animate();
