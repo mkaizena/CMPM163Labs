@@ -16,7 +16,7 @@
 			THREE.Cache.enabled = true;
 			var count = 0;
 			var loader = new THREE.FileLoader();
-			var fshader, vshader, fshader2;
+			var fshader, vshader, fshader2, fshader3;
 
 			//Lab 3 Part 2, 6. Loading Vertex Shader
 			loader.load('shaders/vertexShader.vert',
@@ -72,6 +72,25 @@
 					console.error('An error happened');
 				});
 
+			//loadng own fragment shader 2
+			loader.load('shaders/ownFragShader2.frag',
+				// onLoad callback
+				function (data) {
+						console.log(data); // output the text to the console
+						fshader3 = data;
+						count += 1;
+						addCoolCube(); // we will write this method
+					},
+				// onProgress callback
+				function (xhr) {
+					console.log((xhr.loaded/xhr.total * 100)+ '% loaded');
+				},
+				// onError callback
+				function (err) {
+					console.error('An error happened');
+				});
+
+
 			//
 			//Code for addCoolCube() is at Line 117
 			//
@@ -83,27 +102,31 @@
       		var renderer = new THREE.WebGLRenderer();
       		renderer.setSize(window.innerWidth, window.innerHeight);
       		document.body.appendChild(renderer.domElement);
-			camera.position.z = 5;
+			camera.position.z = 7;
 			
+
+			//
+			//
+			//
 			// setup the cube
 			var geometry = new THREE.BoxGeometry();
 			//Part 1, 4. Replacing material with Phong Lighting model
 			var material = new THREE.MeshPhongMaterial( { color: 0xdddddd, 
 				specular: 0x00ff00, shininess: 30 });
       		var cube = new THREE.Mesh( geometry, material );
-      		cube.position.set(-4,0,0);
+      		cube.position.set(-5,0,0);
      		scene.add(cube);
 
      		//adding own second cube
      		var geometry2 = new THREE.BoxGeometry();
      		var material2 = new THREE.MeshPhongMaterial({
      			color: 0xca64e3,
-     			specular: 0xa2fcfc,
-     			shininess: 20,
+     			specular: 0x00a2ff,
+     			shininess: 10,
      			wireframe: true 
      		});
      		var cube2 = new THREE.Mesh(geometry2, material2);
-     		//cube2.scale.set(3,3,3);
+     		cube2.position.set(-3,0,0);
      		scene.add(cube2);
 
      		//adding own third cube
@@ -114,7 +137,7 @@
      			transparent: true
      		});
      		var cube3 = new THREE.Mesh(geometry3,material3);
-     		cube3.position.set(-2,0,0);
+     		cube3.position.set(-1,0,0);
      		scene.add(cube3);
 
      		//adding own 4th cube
@@ -124,7 +147,7 @@
 				specular: 0xf3f5bc
 			});
      		var cube4 = new THREE.Mesh(geometry4,material4);
-     		cube4.position.set(-2,0,0);
+     		cube4.position.set(-1,0,0);
      		cube4.scale.set(0.3,0.3,0.3);
      		scene.add(cube4);
 
@@ -136,6 +159,7 @@
 			//Part2, 9. function code for addCoolCube()
 			var geometry1, material1, mesh1;
 			var geometry5, material5, cube5;
+			var geometry6, material6, cube6;
 
 			function addCoolCube() {
 				if(count == 2) {
@@ -157,11 +181,11 @@
 					});
 
 					mesh1 = new THREE.Mesh(geometry1, material1);
-					mesh1.position.x = 4;
+					mesh1.position.x = 1;
 					scene.add(mesh1);
 				}
 
-				//check that own fragment shader has loaded
+				//once own fragment shader has loaded
 				//make cube
 				if(count == 3){
 					geometry5 = new THREE.BoxGeometry(1, 1, 1);
@@ -172,8 +196,23 @@
 					});
 
 					cube5 = new THREE.Mesh(geometry5, material5);
-					cube5.position.x = 2;
+					cube5.position.x = 3;
 					scene.add(cube5);
+				}
+
+				//once own fragment shader 2 has loaded
+				//make second cube w/ own shader
+				if(count == 4){
+					geometry6 = new THREE.BoxGeometry(1, 1, 1);
+					material6 =  new THREE.ShaderMaterial({
+						fragmentShader: fshader3,
+						vertexShader: vshader,
+						precision: "mediump"
+					});
+
+					cube6 = new THREE.Mesh(geometry6, material6);
+					cube6.position.x = 5;
+					scene.add(cube6);
 				}
 			}
 
@@ -199,6 +238,10 @@
 				if(geometry5){
 					geometry5.rotateX(0.01);
 					geometry5.rotateY(0.01);
+				}
+				if(geometry6){
+					geometry6.rotateX(0.01);
+					geometry6.rotateY(0.01);
 				}
 
 
