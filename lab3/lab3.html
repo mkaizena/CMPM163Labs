@@ -164,18 +164,8 @@
 				//check that own fragment shader has loaded
 				//make cube
 				if(count == 3){
-					let uniforms = {
-						colorC: {type: 'vec3', value: new
-						 	THREE.Color(1,0,0)},
-						colorB: {type: 'vec3', value: new 
-							THREE.Color(0,1,0)},
-						colorA: {type: 'vec3', value: new 
-							THREE.Color(0,0,1)}
-	 				};
-
 					geometry5 = new THREE.BoxGeometry(1, 1, 1);
 					material5 =  new THREE.ShaderMaterial({
-						uniforms: uniforms,
 						fragmentShader: fshader2,
 						vertexShader: vshader,
 						precision: "mediump"
