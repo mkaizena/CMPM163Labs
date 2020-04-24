@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Lab 4: Textures & Normal Maps</title>
+		<style>
+			body { margin: 0; }
+			canvas { display: block; }
+		</style>
+	</head>
+	<body>
+		<script src="../three.js-master/build/three.js"></script>
+		<script>
+			// setup the scene
+      			var scene = new THREE.Scene();
+      			var camera = new THREE.PerspectiveCamera(75, 
+					window.innerWidth/window.innerHeight, 0.5, 1000);
+      			var renderer = new THREE.WebGLRenderer();
+      			renderer.setSize(window.innerWidth, window.innerHeight);
+      			document.body.appendChild(renderer.domElement);
+				camera.position.z = 5;
+			
+
+				//Part1,6. load texture
+				var texture = THREE.ImageUtils.loadTexture("154.jpg");
+				//Part1,12. adding normal map
+				var normMap = THREE.ImageUtils.loadTexture("154_norm.jpg");
+
+			// setup the cube
+				var geometry = new THREE.BoxGeometry();
+
+				//Part1,7. change material to sample from texture.
+				//Part1,14. implementing normal map
+      			var material = new THREE.MeshPhongMaterial({map: texture, normalMap: normMap});
+
+      			var cube = new THREE.Mesh(geometry, material);
+     			scene.add(cube);
+
+
+     			//Part1,13.
+     			material = new THREE.MeshPhongMaterial( { map: texture } );
+     			//Part 1,10. add second cube
+     			var cube2 = new THREE.Mesh(geometry, material);
+				scene.add(cube2);
+				cube2.position.x -= 2;
+
+
+			// add the light
+				var light = new THREE.PointLight(0xffffff, 1, 1000);
+				light.position.set(10, 10, 10);
+				scene.add(light);
+
+				var vel = 0.25;
+				var lightpos = light.position.x;
+
+			function animate() {
+				requestAnimationFrame(animate);
+
+
+				//Part1,9. make light move back and forth along x axis.
+				if(vel == 0.25){
+					lightpos = light.position.x + vel;
+					light.position.set(lightpos,10,10);
+					if(light.position.x >= 30){
+						vel = -0.25;
+					}
+				}
+				else if(vel == -0.25){
+					lightpos = light.position.x + vel;
+					light.position.set(lightpos,10,10);
+					if(light.position.x <= -30){
+						vel = 0.25;
+					}
+				}
+
+
+
+				renderer.render(scene, camera);
+			}
+			animate();
+
+
+		</script>
+	</body>
+</html>
