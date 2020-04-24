@@ -26,6 +26,11 @@
 				//Part1,12. adding normal map
 				var normMap = THREE.ImageUtils.loadTexture("154_norm.jpg");
 
+				//Part1, 16. load texture and normal map for 3rd cube
+				var texture2 = THREE.ImageUtils.loadTexture("156.jpg");
+				var normMap2 = THREE.ImageUtils.loadTexture("172_norm.jpg");
+
+
 			// setup the cube
 				var geometry = new THREE.BoxGeometry();
 
@@ -35,6 +40,7 @@
 
       			var cube = new THREE.Mesh(geometry, material);
      			scene.add(cube);
+     			cube.position.y += 2;
 
 
      			//Part1,13.
@@ -43,6 +49,22 @@
      			var cube2 = new THREE.Mesh(geometry, material);
 				scene.add(cube2);
 				cube2.position.x -= 2;
+				cube2.position.y += 2;
+
+
+				//Part1, 16. Add 3rd cube w/ new texture and normal map
+				var geometry2 = new THREE.BoxGeometry();
+      			var material2 = new THREE.MeshPhongMaterial({map: texture2, normalMap: normMap2});
+
+      			var cube3 = new THREE.Mesh(geometry2, material2);
+     			scene.add(cube3);
+     			cube3.position.x += 2;
+     			cube3.position.y += 2;
+
+
+
+
+
 
 
 			// add the light
