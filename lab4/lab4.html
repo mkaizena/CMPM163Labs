@@ -20,6 +20,64 @@
       			document.body.appendChild(renderer.domElement);
 				camera.position.z = 5;
 			
+				//Part2, 18. Loading shaders from lab3
+				THREE.Cache.enabled = true;
+				var count = 0;
+				var loader = new THREE.FileLoader();
+				var fshader, vshader, fshader2;
+
+				loader.load('shaders/vertexShader.vert',
+					// onLoad callback
+					function (data) {
+						console.log(data); // output the text to the console
+						vshader = data;
+						count += 1;
+						addTextureShaderCube(); // we will write this method
+					},
+					// onProgress callback
+					function (xhr) {
+						console.log((xhr.loaded/xhr.total * 100)+ '% loaded');
+					},
+					// onError callback
+					function (err) {
+						console.error('An error happened');
+					});
+
+				loader.load('shaders/fragmentShader.frag',
+					// onLoad callback
+					function (data) {
+						console.log(data); // output the text to the console
+						fshader = data;
+						count += 1;
+						addTextureShaderCube(); // we will write this method
+					},
+					// onProgress callback
+					function (xhr) {
+						console.log((xhr.loaded/xhr.total * 100)+ '% loaded');
+					},
+					// onError callback
+					function (err) {
+						console.error('An error happened');
+					});
+
+				//loadng own fragment shader
+				loader.load('shaders/ownFragShader.frag',
+					// onLoad callback
+					function (data) {
+							console.log(data); // output the text to the console
+							fshader2 = data;
+							count += 1;
+							addTextureShaderCube(); // we will write this method
+						},
+					// onProgress callback
+					function (xhr) {
+						console.log((xhr.loaded/xhr.total * 100)+ '% loaded');
+					},
+					// onError callback
+					function (err) {
+						console.error('An error happened');
+					});
+
 
 				//Part1,6. load texture
 				var texture = THREE.ImageUtils.loadTexture("154.jpg");
@@ -62,11 +120,6 @@
      			cube3.position.y += 2;
 
 
-
-
-
-
-
 			// add the light
 				var light = new THREE.PointLight(0xffffff, 1, 1000);
 				light.position.set(10, 10, 10);
@@ -74,6 +127,52 @@
 
 				var vel = 0.25;
 				var lightpos = light.position.x;
+
+
+				//Part2, 19. function addTextureShaderCube();
+				var geometry1, material1, mesh1;
+				var geometry5, material5, cube5;
+
+				function addTextureShaderCube() {
+					if(count == 2) {
+						//Part2, 25. load texture via shader
+						//4th cube
+						var uniforms = {texture1: { type: "t", value: 
+							THREE.ImageUtils.loadTexture("161b.jpg")}};
+
+      					geometry1 = new THREE.BoxGeometry(1, 1, 1);
+      					material1 =  new THREE.ShaderMaterial({
+            				uniforms: uniforms,
+      						fragmentShader: fshader,
+              				vertexShader: vshader,
+      						precision: "mediump"});
+      						//ShaderMaterial doesn't support normMap
+      						//like PhongMaterial does. I tried it and
+      						//console said it doesn't support. Now I know.
+
+      					mesh1 = new THREE.Mesh(geometry1, material1);
+      					mesh1.position.x = -2;
+      					scene.add(mesh1);
+    				}
+    				//Part2, 
+    				if(count == 3){
+    					var uniforms = {texture2: { type: "t", value: 
+							THREE.ImageUtils.loadTexture("176.jpg")}};
+
+						geometry5 = new THREE.BoxGeometry(1,1,1);
+						material5 = new THREE.ShaderMaterial({
+							uniforms: uniforms,
+      						fragmentShader: fshader2,
+              				vertexShader: vshader,
+      						precision: "mediump"
+      					});
+
+      					cube5 = new THREE.Mesh(geometry5, material5);
+      					cube5.position.x +=2;
+      					scene.add(cube5);
+    				}
+				}
+
 
 			function animate() {
 				requestAnimationFrame(animate);
