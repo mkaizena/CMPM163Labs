@@ -57,3 +57,20 @@ a) x = ⌊ u * 8 ⌋  or  x = Math.floor(u * 8);
 b) y = ⌊ (v * -8) + 8 ⌋  or  y = Math.floor((v * -8) + 8);
 
 c) The color sampled is white.
+
+
+Lab 5: Part 1
+
+Video Link:
+
+https://drive.google.com/file/d/1ovIaOF6RQhILVuuVFUTzu9skBc7lIrQ7/view?usp=sharing
+
+My first modification is the required sparking particle affect coming out from the kart's wheels. I made this by following the tutorial: creating a particle system, changing it's properties (size, speed, angle, color: blue instead of tutorial's purple, etc.) in the inspector to make the particles look how I wanted. I also added a second particle system that doesn't move but acts as the "source" from where the first particle system emits, which was also in the tutorial. I then duplicated these systems to attach to the other back wheel for symmetry.
+
+My next modification was adding a custom trigger at the finish line that has confetti bursting out when the kart passes it. I did this by creating a rectangular prism (scaled cube) over the finish line and set it as a trigger, adding the simple trigger component, and setting the provided confetti particle prefab I put in the scene to play when the trigger is activated.
+
+Another modification was giving the player character model a top hat, and changed the color from black to white-ish-blue by changing the material's albedo color.
+
+Another modification I made was change the skybox. I did this by downloading and importing a free skybox asset from the Unity Asset store (because I don't have appropriate images to create my own skybox material) and switching out the kart tutorial's skybox material for the new one in the lighting settings. 
+
+The last modification I made was add a billboard model (from the kart tutorial's mod assets) to the scene. I replaced the plain color of the billboard content material with an image of Seth Everman's profile picture.
