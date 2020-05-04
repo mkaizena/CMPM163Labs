@@ -11,7 +11,7 @@ Lab 2 Screenshot:
 ![](images/lab2screenshot.png)
 
 
-##Lab 3
+## Lab 3
 
 Video Link:
 
@@ -32,7 +32,7 @@ From left to right:
 - The sixth cube is one I also made with my own shader, by setting the RGB values of gl_FragColor to the positions of the same axis (X, in this case) at different offset intervals. It made a cool blue gradient that reminds me of the sky.
 
 
-##Lab 4:
+## Lab 4:
 
 Video Link:
 
@@ -59,7 +59,7 @@ b) y = ⌊ (v * -8) + 8 ⌋  or  y = Math.floor((v * -8) + 8);
 c) The color sampled is white.
 
 
-##Lab 5: Part 1
+## Lab 5: Part 1
 
 Video Link:
 
