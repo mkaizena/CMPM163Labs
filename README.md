@@ -88,4 +88,4 @@ Area Light: This light only works when baked into a lightmap. It emits light fro
 
 Materials & Standard Shader:
 
-<img src="images/IMG_20200512_054812__01.jpg" width="200"> <img src="images/2020-05-12_0632.png" height="250">
+<img src="images/IMG_20200512_054812__01.jpg" width="200"> <img src="images/2020-05-12_0632.png" height="240">
