@@ -89,3 +89,5 @@ Area Light: This light only works when baked into a lightmap. It emits light fro
 Materials & Standard Shader:
 
 <img src="images/IMG_20200512_054812__01.jpg" width="175"> <img src="images/2020-05-12_0632.png" height="225">
+
+I made a material to resemble the scuffed and scratched metal of a fork handle. I made this by finding a texture of scratches online and applied the normal, height, and occlusion maps that came with it. However, The texture's background was too dark so changing the albedo color couldn't lighten the abse color to the gray I needed. Instead, I applied the texture as the material's secondary map and turned on emission to have the texture's details show and also be able to change the base color to gray. I then editted the material's metallic and smoothness properties until I could get the dull looking diffused reflection like the original object.
