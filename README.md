@@ -74,3 +74,16 @@ Another modification was giving the player character model a top hat, and change
 Another modification I made was change the skybox. I did this by downloading and importing a free skybox asset from the Unity Asset store (because I don't have appropriate images to create my own skybox material) and switching out the kart tutorial's skybox material for the new one in the lighting settings. 
 
 The last modification I made was add a billboard model (from the kart tutorial's mod assets) to the scene. I replaced the plain color of the billboard content material with an image of Seth Everman's profile picture.
+
+
+## Lab 6: Part 1
+
+Spotlight: This light shines in one direction and is affected by both position and rotation.
+
+Directional Light: This light shines in one direction and acts like a sun. It affects all objects in the scene, no matter the light's position. The light's direction can be changed by rotating it.
+
+Point Light: This light shines in all directions, so it is unaffected by rotation. It's position can be changed.
+
+Area Light: This light only works when baked into a lightmap. It emits light from one side of a plane.
+
+
