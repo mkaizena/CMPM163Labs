@@ -86,4 +86,7 @@ Point Light: This light shines in all directions, so it is unaffected by rotatio
 
 Area Light: This light only works when baked into a lightmap. It emits light from one side of a plane.
 
+Materials & Standard Shader:
 
+![](images/IMG_20200512_054812__01.jpg)
+![](2020-05-12_0632.png)
