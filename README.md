@@ -97,3 +97,7 @@ Textures:
 I added a wood texture for a wood-panelled floor in my scene, including normal, occlusion, and metal maps. I tiled the texture so it would lok more like an actual floor's panelling.
 
 I found a texture of sci-fi themed metal panels and implemented them into a material with its normal, occlusion, and metal maps and applied to an oblong cylinder pillar object. I tinted the base a blue-ish green color and doubled the normal map value so the texture would stand out more.
+
+Skybox:
+
+I made a procedural skybox, chose a dark blue for the ground and a pale teal for the sky. I messed around with the atmosphere thickness and exposure to get a cool burning red in between the sky and ground.
