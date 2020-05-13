@@ -101,3 +101,5 @@ I found a texture of sci-fi themed metal panels and implemented them into a mate
 Skybox:
 
 I made a procedural skybox, chose a dark blue for the ground and a pale teal for the sky. I messed around with the atmosphere thickness and exposure to get a cool burning red in between the sky and ground.
+
+![](images/2020-05-12_1807.png)
