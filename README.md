@@ -91,3 +91,9 @@ Materials & Standard Shader:
 <img src="images/IMG_20200512_054812__01.jpg" width="175"> <img src="images/2020-05-12_0632.png" height="225">
 
 I made a material to resemble the scuffed and scratched metal of a fork handle. I made this by finding a texture of scratches online and applied the normal, height, and occlusion maps that came with it. However, The texture's background was too dark so changing the albedo color couldn't lighten the abse color to the gray I needed. Instead, I applied the texture as the material's secondary map and turned on emission to have the texture's details show and also be able to change the base color to gray. I then editted the material's metallic and smoothness properties until I could get the dull looking diffused reflection like the original object.
+
+Textures:
+
+I added a wood texture for a wood-panelled floor in my scene, including normal, occlusion, and metal maps. I tiled the texture so it would lok more like an actual floor's panelling.
+
+I found a texture of sci-fi themed metal panels and implemented them into a material with its normal, occlusion, and metal maps and applied to an oblong cylinder pillar object. I tinted the base a blue-ish green color and doubled the normal map value so the texture would stand out more.
