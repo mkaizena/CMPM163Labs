@@ -103,3 +103,11 @@ Skybox:
 I made a procedural skybox, chose a dark blue for the ground and a pale teal for the sky. I messed around with the atmosphere thickness and exposure to get a cool burning red in between the sky and ground.
 
 ![](images/2020-05-12_1807.png)
+
+## Lab7: Part 1
+
+Video Link:
+
+https://drive.google.com/file/d/1fdc81Ibw8A9hMBWuumwGEBk2BOG1lue0/view?usp=sharing
+
+After following the tutorials, I made my scene by setting up a rough looking platform with a shader similar to the first tutorial. I set it's color to fade from brown to green and back over time. I made trees by having spheres modified by pbr shaders the same way as in the tutorial but using a different noise texture and set them on top of cylinders. I gave the cylinders texture and normal maps of tree bark for trunks. I gave the tree tops a 2d leaf texture through the shader graph and made it a brighter green. I made rocks in a similar method as above, but with different values in amount of noise, offset, and multiplies. I gave it a 2d texture of a rock's surface. I applied this rock shader to spheres and capsules and set these objects up around the water wave plane made in the tutorial. With another plane through the pbr shader graph, I made a mountain range by remapping noise on the Y axis and texturing the plane with another rocky texture. I placed it over a flat rocky area to make a cove at the edge of the water and put a red pointlight there. I also added a large spotlight above the whole scene and pointed it diagonally across the scene to have variety in lighting. I put in a particle system in a hemisphere shape above the rest of the scene and let it slowly rain blue and yellow particles. Lastly, I switched out the skybox so the background was something other than gray.
