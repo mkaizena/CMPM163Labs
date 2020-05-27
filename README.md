@@ -136,4 +136,4 @@ The inspiration city affected my generated city by influencing my choice of asse
 
 Checking in with partner:
 
-For the creative portion, my partner picked up a few more different buildings from the asset store for more variety in buildings in their city. Some of the buildings are extremely different in size, and because of how large some of them are, they clip through each other. Because the large buildings are clustered together, the clipping gives an interesting look to the city.
+For the creative portion, my partner picked up a few more different buildings from the asset store for more variety in buildings in their city. Some of the buildings are extremely different in size, and because of how large some of them are, they clip through each other. Because the large buildings are clustered together, the clipping gives an interesting look to the city. I didn't learn anything new when shown my partner's work.
