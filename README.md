@@ -124,12 +124,16 @@ My partner and I worked on our labs separately.
 
 ## Lab8: Part 1
 
-Inspiration city:
+Inspiration city: Oswega, Illinois
 
 ![](images/lab8inspirOswegoIll.png)
 
-My Generated City:
+My generated city:
 
 ![](images/lab8screenshot.png)
 
+The inspiration city affected my generated city by influencing my choice of assets I used. I chose suburban type houses. I also didn't stick to buildings and used trees as well because the inspiration city has quite a bit of foliage in between buildings, which I tried to imitate. I also added water to be proceduraly generated because my reference image seems to have spots of water.
 
+Checking in with partner:
+
+For the creative portion, my partner picked up a few more different buildings from the asset store for more variety in buildings in their city. Some of the buildings are extremely different in size, and because of how large some of them are, they clip through each other. Because the large buildings are clustered together, the clipping gives an interesting look to the city.
