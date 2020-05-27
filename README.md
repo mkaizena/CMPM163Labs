@@ -121,3 +121,15 @@ ii. They found the wave tutorial challenging.
 iii.The shader graph was most interesting to them.
 
 My partner and I worked on our labs separately.
+
+## Lab8: Part 1
+
+Inspiration city:
+
+![](images/lab8inspirOswegoIll.png)
+
+My Generated City:
+
+![](images/lab8screenshot.png)
+
+
